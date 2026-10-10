@@ -190,10 +190,12 @@ Antes de llegar a CCD probamos restricciones post-entrenamiento sobre **BiomedCL
 
 ## 7. Cómo reproducir
 
-1. Abre el notebook con el botón **Abrir en Colab** y elige **GPU A100** (L4 también funciona, pero es más lenta; una T4 de 16 GB no alcanza para MAIRA-2).
-2. Celda 1: instalación (~3–4 min). La sesión **se reinicia sola**; luego sigue desde la celda 2, **sin volver a la 1**.
-3. Celdas 2 → 4: datos, selección de estudios con hallazgos, carga del modelo y generación (~6 min para 30 estudios en A100).
-4. Celdas 5 → H: evaluación y gráficas. Las celdas **A/B** guardan y cargan los resultados desde Google Drive, para no recalcular.
+**Para revisar los resultados (cualquier Colab, sin GPU, ~30 s):** abre el notebook con el botón **Abrir en Colab** y usa **Entorno de ejecución → Ejecutar todo**. Con `GENERAR = False` (valor por defecto en la celda 1) se omiten la instalación y la generación, y las celdas B → H cargan los resultados guardados en [`resultados/ccd_demo/`](resultados/ccd_demo/) y dibujan todas las gráficas.
+
+**Para volver a generar los informes desde cero:**
+1. Elige **GPU A100** (L4 también funciona pero es más lenta; una T4 de 16 GB no alcanza para MAIRA-2).
+2. En la celda 1 pon `GENERAR = True` y usa **Ejecutar todo**: instala CCD (~4 min), genera los informes con y sin restricción (~6 min para 30 estudios) y los evalúa con CheXbert.
+3. Las celdas **A/B** guardan y cargan los resultados (A en Google Drive, B desde este repositorio).
 
 ### Versiones usadas
 
