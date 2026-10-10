@@ -1,3 +1,9 @@
+"""Evalúa la restricción de invariancia al orden de las opciones (salida de llm_test.py).
+
+Compara la exactitud del LLM en cada uno de los 4 órdenes de opciones con la de la restricción
+(promediar las log-probabilidades sobre los 4 órdenes), y muestra el sesgo por letra.
+Uso: python llm_eval.py cache/llm_Qwen2.5-0.5B-Instruct_60.npz
+"""
 import sys, numpy as np
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support
 d=np.load(sys.argv[1]); LP,y=d["LP"],d["y"]; n=len(y)

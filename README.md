@@ -15,10 +15,10 @@ Exposición y repositorio de implementación sobre cómo **incorporar restriccio
 
 | Carpeta | Qué hay |
 |---|---|
-| [`notebooks/ccd_radiologia_maira2.ipynb`](notebooks/ccd_radiologia_maira2.ipynb) | **Implementación principal**, ya ejecutada (con salidas): instalación, datos, generación con/sin restricción, evaluación clínica y gráficas |
+| [`notebooks/ccd_radiologia_maira2.ipynb`](notebooks/ccd_radiologia_maira2.ipynb) | **Implementación principal**, ya ejecutada y comentada: instalación, datos, generación con/sin restricción, evaluación clínica y gráficas. Las celdas **B → H** cargan los resultados desde este repositorio y corren sin GPU |
 | [`figuras/`](figuras/) | Figuras del experimento principal |
-| [`resultados/`](resultados/) | Tablas de métricas |
-| [`experimentos_previos/`](experimentos_previos/) | Lo que probamos antes y **no** funcionó (o funcionó en otro dominio), con código y números |
+| [`resultados/`](resultados/) | Tablas de métricas y [`ccd_demo/`](resultados/ccd_demo/): informes generados, etiquetas CheXbert y radiografías (lo que usan las celdas B → H) |
+| [`experimentos_previos/`](experimentos_previos/) | Lo que probamos antes y **no** funcionó (o funcionó en otro dominio): código, descarga de datos, `requirements.txt` y salida esperada |
 
 ---
 
@@ -150,7 +150,7 @@ Antes de llegar a CCD probamos restricciones post-entrenamiento sobre **BiomedCL
 
 | Restricción post-entrenamiento | Resultado (AUC salvo indicación) |
 |---|---|
-| Invariancia a rotaciones/reflexiones (promedio sobre el grupo D4) | 0,825 → 0,832, IC del Δ [−0,007, +0,021]; mejora pequeña pero en 10/10 particiones. Lleva al **0 %** los parches cuyo diagnóstico cambiaba al girarlos (antes **30,6 %**); κ de Fleiss entre orientaciones 0,74 → 1,00 |
+| Invariancia a rotaciones/reflexiones (promedio sobre el grupo D4) | 0,825 → 0,832 (mitad de prueba, 500 parches), IC del Δ [−0,007, +0,021]; mejora pequeña pero en 10/10 particiones. Lleva al **0 %** los parches cuyo diagnóstico cambiaba al girarlos (antes **30,6 %**); κ de Fleiss entre orientaciones 0,74 → 1,00 |
 | Normalización de la tinción H&E | 0,810 → **0,738** (empeora) |
 | Mirar solo el centro del parche (64 / 48 px) | 0,798 → 0,780 / 0,760 (empeora) |
 | Transducción TransCLIP / Histo-TransCLIP (código oficial) | 0,810 → 0,765 / 0,644 (empeora) |
@@ -192,6 +192,20 @@ Antes de llegar a CCD probamos restricciones post-entrenamiento sobre **BiomedCL
 2. Celda 1: instalación (~3–4 min). La sesión **se reinicia sola**; luego sigue desde la celda 2, **sin volver a la 1**.
 3. Celdas 2 → 4: datos, selección de estudios con hallazgos, carga del modelo y generación (~6 min para 30 estudios en A100).
 4. Celdas 5 → H: evaluación y gráficas. Las celdas **A/B** guardan y cargan los resultados desde Google Drive, para no recalcular.
+
+### Versiones usadas
+
+| Componente | Versión |
+|---|---|
+| Entorno | Google Colab, Python 3.13, GPU NVIDIA A100 40 GB |
+| PyTorch | 2.11.0 + CUDA 13.0 (el de Colab) |
+| transformers / tokenizers / accelerate | 4.51.3 / 0.21.1 / 1.6.0 |
+| Libra (base de CCD) | v1.0.3 |
+| CCD | commit [`8cefd7f`](https://github.com/X-iZhang/CCD/tree/8cefd7fcd2f222cfb102e1e33b3918bf98ad6d4e) |
+| f1chexbert (CheXbert) | 0.0.2 |
+| Datos | `X-iZhang/IU-Xray-RRG`, `findings_section/test-00000-of-00014.parquet` (237 estudios) |
+
+La generación es *greedy* (determinista) y la selección de estudios y el *bootstrap* usan semillas fijas. Los experimentos previos tienen su propio [`requirements.txt`](experimentos_previos/requirements.txt) e instrucciones en [`experimentos_previos/README.md`](experimentos_previos/README.md).
 
 **Notas de compatibilidad (Colab, Python 3.13):** Libra fija `torch==2.4.0`, que no existe para Python 3.13, así que se instala con `--no-deps` sobre el torch de Colab y con `transformers==4.51.3`. Además se define `USE_TF=0` para que transformers no cargue TensorFlow (choca con protobuf), y se copia el checkpoint de CheXbert a la ruta que espera `f1chexbert`.
 

@@ -2,7 +2,7 @@
 Preguntas médicas MMLU (clinical_knowledge). El modelo lee la pregunta y le leemos la probabilidad de A/B/C/D.
 Original: un solo orden de opciones. Restricción: la respuesta no puede depender del orden ->
 promediamos log-probabilidades sobre las 4 rotaciones cíclicas de las opciones."""
-import sys, time, numpy as np, torch, pandas as pd
+import os, sys, time, numpy as np, torch, pandas as pd
 from huggingface_hub import hf_hub_download
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
@@ -35,5 +35,6 @@ for i, r in df.iterrows():
         for j, p in enumerate(perm): LP[i, k, p] = lp[j]
     if i % 20 == 0: print(f"{i}/{len(df)} {time.time()-t0:.0f}s", flush=True)
 y = df["answer"].values
+os.makedirs("cache", exist_ok=True)
 np.savez(f"cache/llm_{MODEL.split('/')[-1]}_{N}.npz", LP=LP, y=y)
 print(f"listo {time.time()-t0:.0f}s")

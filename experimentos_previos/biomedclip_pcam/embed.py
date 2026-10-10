@@ -1,7 +1,8 @@
-"""Paso 1 (se corre UNA vez, antes de clase): embeddings BiomedCLIP de cada parche
+"""Paso 1: embeddings de BiomedCLIP (requiere data/test.parquet: python ../descargar_datos.py).
+Se corre UNA vez: embeddings BiomedCLIP de cada parche
 en sus 8 orientaciones D4. Guarda todo en cache/emb.npz.
 Uso: python embed.py N   (N imágenes balanceadas del split test de PCam)"""
-import sys, io, time
+import os, sys, io, time
 import numpy as np, torch, pyarrow.parquet as pq
 from PIL import Image
 import open_clip
@@ -9,6 +10,7 @@ import open_clip
 N = int(sys.argv[1]) if len(sys.argv) > 1 else 1000
 SEED = 0
 torch.set_num_threads(16)
+os.makedirs("cache", exist_ok=True)
 dev = "cuda" if torch.cuda.is_available() else "cpu"
 
 t0 = time.time()
