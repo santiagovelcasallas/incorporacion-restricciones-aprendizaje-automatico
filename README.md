@@ -240,6 +240,10 @@ La generación es *greedy* (determinista) y la selección de estudios y el *boot
 - Cristian Miguel Gómez Salazar
 - Santiago Alberto Vélez Casallas
 
+## Uso de inteligencia artificial
+
+Ver [`ACLARACION_USO_IA.md`](ACLARACION_USO_IA.md): qué hizo el equipo y en qué se usó un asistente de IA como herramienta.
+
 ## Licencia
 
 Código bajo licencia MIT (ver [`LICENSE`](LICENSE)). Los modelos y datos de terceros conservan sus propias licencias.
