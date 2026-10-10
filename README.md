@@ -17,6 +17,7 @@ Exposición y repositorio de implementación sobre cómo **incorporar restriccio
 | Carpeta | Qué hay |
 |---|---|
 | [`presentacion/`](presentacion/Incorporacion_de_restricciones_en_modelos_de_aprendizaje_automatico.pdf) | **Diapositivas de la exposición** (PDF, 26 páginas) |
+| [`presentacion/guia_restricciones_ml.docx`](presentacion/guia_restricciones_ml.docx) | **Guía de estudio del equipo**: fundamentos, matemáticas (penalizaciones, Lagrangiano), monotonía, PINNs y decodificación restringida, con bibliografía. La sección de la Persona 4 describe la demo planeada inicialmente (salida JSON con gramática); la implementación final es CCD |
 | [`notebooks/ccd_radiologia_maira2.ipynb`](notebooks/ccd_radiologia_maira2.ipynb) | **Implementación principal**, ya ejecutada y comentada: instalación, datos, generación con/sin restricción, evaluación clínica y gráficas. Las celdas **B → H** cargan los resultados desde este repositorio y corren sin GPU |
 | [`figuras/`](figuras/) | Figuras del experimento principal |
 | [`resultados/`](resultados/) | Tablas de métricas y [`ccd_demo/`](resultados/ccd_demo/): informes generados, etiquetas CheXbert y radiografías (lo que usan las celdas B → H) |
