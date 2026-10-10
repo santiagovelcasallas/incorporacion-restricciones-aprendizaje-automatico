@@ -217,7 +217,10 @@ Antes de llegar a CCD probamos restricciones post-entrenamiento sobre **BiomedCL
 
 ## Equipo
 
-*Por completar: integrantes del grupo.*
+- Manuela Rendón Sepulveda
+- Luciana Núñez Ospina
+- Cristian Miguel Gómez Salazar
+- Santiago Alberto Vélez Casallas
 
 ## Licencia
 
