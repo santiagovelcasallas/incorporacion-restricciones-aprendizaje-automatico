@@ -6,3 +6,4 @@ data/
 *.npz
 *.parquet
 .ipynb_checkpoints/
+!resultados/ccd_demo/*.npz
