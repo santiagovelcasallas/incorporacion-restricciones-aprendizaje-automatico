@@ -1,6 +1,7 @@
 # Incorporación de restricciones a modelos de aprendizaje automático
 
 [![Presentación en Canva](https://img.shields.io/badge/Presentaci%C3%B3n-Canva-00C4CC?logo=canva&logoColor=white)](https://www.canva.com/design/DAHXGZ3s_wk/x-NnP_Y9_0qHoLqFf3w1Qg/view)
+[![Diapositivas PDF](https://img.shields.io/badge/Diapositivas-PDF-B31B1B?logo=adobeacrobatreader&logoColor=white)](presentacion/Incorporacion_de_restricciones_en_modelos_de_aprendizaje_automatico.pdf)
 [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagovelcasallas/incorporacion-restricciones-aprendizaje-automatico/blob/main/notebooks/ccd_radiologia_maira2.ipynb)
 
 Exposición y repositorio de implementación sobre cómo **incorporar restricciones** en modelos de aprendizaje automático, con énfasis en **Transformers** y en restricciones aplicadas **después del entrenamiento**, directamente sobre los **logits** durante la inferencia.
@@ -15,6 +16,7 @@ Exposición y repositorio de implementación sobre cómo **incorporar restriccio
 
 | Carpeta | Qué hay |
 |---|---|
+| [`presentacion/`](presentacion/Incorporacion_de_restricciones_en_modelos_de_aprendizaje_automatico.pdf) | **Diapositivas de la exposición** (PDF, 26 páginas) |
 | [`notebooks/ccd_radiologia_maira2.ipynb`](notebooks/ccd_radiologia_maira2.ipynb) | **Implementación principal**, ya ejecutada y comentada: instalación, datos, generación con/sin restricción, evaluación clínica y gráficas. Las celdas **B → H** cargan los resultados desde este repositorio y corren sin GPU |
 | [`figuras/`](figuras/) | Figuras del experimento principal |
 | [`resultados/`](resultados/) | Tablas de métricas y [`ccd_demo/`](resultados/ccd_demo/): informes generados, etiquetas CheXbert y radiografías (lo que usan las celdas B → H) |
